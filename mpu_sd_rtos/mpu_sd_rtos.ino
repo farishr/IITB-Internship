@@ -18,6 +18,8 @@ With increase in file size, the write speed reduces as file open & close takes m
 #include <SPI.h>
 #include <SD.h>
 
+#define LED 2   //for overflow check
+
 /////////////MPU Setup/////////////
 #define MPU_CS_PIN        27
 #define MPU_CLK_PIN       14
@@ -130,6 +132,10 @@ void MPU_GET( void * parameter ) {
       if (!write_ready_flag) {
         write_ready_flag = true;
         vTaskResume(SD_Write_h);
+      } else {
+        digitalWrite(LED,HIGH);
+        Serial.println("!!!OVERFLOW!!!");
+        while(1){delay(1000);}
       }
 
       rtime = micros()-rstart;
@@ -184,6 +190,9 @@ void SD_Write( void * parameter ) {
 /////////////MAIN SETUP FUNCTION/////////////
 void setup() {
   Serial.begin(115200);
+
+    pinMode(LED,OUTPUT);
+    digitalWrite(LED,LOW);
 
     if (!SD.begin(csPin, SPI, 18000000)) {  //frequency beyond 19Mhz will cause ESP to restart.
         Serial.println("Card Mount Failed");
