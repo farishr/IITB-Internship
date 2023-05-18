@@ -18,7 +18,7 @@ In this project, MPU9250 data is collected and stored into the SD Card simulatan
 <br>**Sketch: `mpu_sd_rtos`**<br/>
 
 #### Components Used:
-1. MPU9250 (MPU-9250 9-Axis (Gyro + Accelerometer + Magnetometer) MEMS MotionTracking Device)
+1. MPU9250 (9-Axis (Gyro + Accelerometer + Magnetometer) MEMS MotionTracking Device)
 2. Micro SD Card Reader Module
 
 Both MPU and SD Card uses SPI communication and is connected to the ESP32 via HSPI & VSPI respectively. Core 0 retrieves data from the MPU into an array and Core 1 writes this data into the SD Card. The global array is split into _n_ sections. While MPU data is stored into the _n<sup>th<sup/>_ section of the array, data in the _(n-1)<sup>th<sup/>_ section is written into the SD Card.
