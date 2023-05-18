@@ -25,6 +25,9 @@ In this project, MPU9250 data is collected and stored into the SD Card simulatan
 1. MPU9250 (9-Axis (Gyro + Accelerometer + Magnetometer) MEMS MotionTracking Device)
 2. Micro SD Card Reader Module
 
+#### Wiring:
+![MPU and SD Card Wiring](/MISC/mpu_sd_wiring.png)
+
 Both MPU and SD Card uses SPI communication and is connected to the ESP32 via HSPI & VSPI respectively. Core 0 retrieves data from the MPU into an array and Core 1 writes this data into the SD Card. The global array is split into _n_ sections. While MPU data is stored into the _n<sup>th<sup/>_ section of the array, data in the _(n-1)<sup>th<sup/>_ section is written into the SD Card. Here, the maximum data accquisition speed is determined by the slowed device which is the SD Card Module. In addition, as the file size increases, opening and closing of the file takes longer time as a result, the read and write speed gradually decreases. This can be tackled by creating a new file after a specific number of samples have been recorded.
 
 **Observations:** Maximum data acquisiton speed: 2KHz (1 sample = 1 row = 6 data points)
