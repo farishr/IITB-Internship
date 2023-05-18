@@ -5,7 +5,7 @@ This repository contains all the projects I developed during my internship at II
 All the libraries and tools used to develop the projects within this repository can be found in the "Library & Tools" folder. Code has been references from multiple sources. **References can be found at the end of this document.**
 **Specifications of ESP32**
 SPI Interfaces:
-![SPI Interfaces of ESP32](/)
+![SPI Interfaces of ESP32](/MISC/SPI_Interfaces_ESP32.png)
 
 
 ### 1. Hosting a website
