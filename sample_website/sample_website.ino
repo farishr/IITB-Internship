@@ -45,19 +45,31 @@ void setup() {
 
     // Route for root / web page
  myESPserver.on("/", HTTP_GET, [](AsyncWebServerRequest *request){
-    request->send(SPIFFS, "/index2.html", String(), false);
+    request->send(SPIFFS, "/index2.html", "text/html");
   });
   
   myESPserver.on("/norway", HTTP_GET, [](AsyncWebServerRequest *request){
-    request->send(SPIFFS, "/norway.html", String(), false);
+    request->send(SPIFFS, "/norway.html", "text/html");
   });
   
+  myESPserver.on("/nl.png", HTTP_GET, [](AsyncWebServerRequest * request) {
+    request->send(SPIFFS, "/nl.png", "image/png");
+  });
+
   myESPserver.on("/uk", HTTP_GET, [](AsyncWebServerRequest *request){
-    request->send(SPIFFS, "/uk.html", String(), false);
+    request->send(SPIFFS, "/uk.html", "text/html");
+  });
+
+  myESPserver.on("/uk.jpg", HTTP_GET, [](AsyncWebServerRequest * request) {
+    request->send(SPIFFS, "/uk.jpg", "image/jpg");
   });
   
   myESPserver.on("/india", HTTP_GET, [](AsyncWebServerRequest *request){ 
-    request->send(SPIFFS, "/india.html", String(), false);
+    request->send(SPIFFS, "/india.html", "text/html");
+  });
+
+  myESPserver.on("/india.jpg", HTTP_GET, [](AsyncWebServerRequest * request) {
+    request->send(SPIFFS, "/india.jpg", "image/jpg");
   });
 
   myESPserver.begin();
