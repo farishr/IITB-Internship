@@ -7,14 +7,15 @@ All the libraries and tools used to develop the projects within this repository 
 
 ### 1. Hosting a website
 This project is a simple website hosted on the ESP32 Microcontroller. The website is hosted on an Async Webserver and the ESP32 is configured in Access Point mode. The HTML files for the website are stored on the SPIFFS memory of the ESP32. These files can be found in the "data" folder within the sketch folder.
-<br />**Sketch: sample_website**<br />
+<br>**Sketch: `sample_website`**<br/>
 
 ### 2. Website with Login
-Similar to project 1, a simple website is hosted on the ESP32 Async Webserver. In addition, a login page is requested and the ESP32 operates in STA (Station Point Mode). ESP32 and Device needs to be on the same network. Networks Credetials need to be hardcoded in the Firmware.
-<br />**Sketch: website_w_login**<br />
+_Similar to project 1, a simple website is hosted on the ESP32 Async Webserver. In addition, a login page is requested and the ESP32 operates in STA (Station Point Mode). ESP32 and Device needs to be on the same network. Networks Credetials need to be hardcoded in the Firmware.
+<br>**Sketch: `website_w_login`**<br/>
 
 ### 3. MPU9250 Data Acquistion & SD Card Storage using Free-RTOS
 In this project, MPU9250 data is collected and stored into the SD Card simulataneously using the multi-core functionality of the ESP32 Microcontroller.
+<br>**Sketch: `mpu_sd_rtos`**<br/>
 
 #### Components Used:
 1. MPU9250 (MPU-9250 9-Axis (Gyro + Accelerometer + Magnetometer) MEMS MotionTracking Device)
