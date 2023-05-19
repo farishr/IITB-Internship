@@ -33,5 +33,6 @@ Both MPU and SD Card uses SPI communication and is connected to the ESP32 via HS
 **Observations:** Maximum data acquisiton speed: 2KHz (1 sample = 1 row = 6 data points)
   
 ### 4. Heap Allocation using Free-RTOS (Dynamic Memory)
-This sketch implements a simple heap allocation application. There are two different functions running simultaneously on both the cores of ESP32. Core 0 runs a function which continually monitors the Serial monitor for input from the user and Core 1 runs the function that prints the user's text. Once the user submits the input into the serial monitor, heap is allocated for this input string and is read by the second function and printed on the serial monitor. Refer: [Free-RTOS Guide](https://www.freertos.org/fr-content-src/uploads/2018/07/161204_Mastering_the_FreeRTOS_Real_Time_Kernel-A_Hands-On_Tutorial_Guide.pdf)
-Sketch:[heap_allocation_rtos](/heap_allocation_rtos/heap_allocation_rtos.ino)
+This sketch implements a simple heap allocation application. There are two different functions running simultaneously on both the cores of ESP32. Core 0 runs a function which continually monitors the Serial monitor for input from the user and Core 1 runs the function that prints the user's text. Once the user submits the input into the serial monitor, heap is allocated for this input string and is read by the second function and printed on the serial monitor. 
+<br>**Refer: [Free-RTOS Guide](https://www.freertos.org/fr-content-src/uploads/2018/07/161204_Mastering_the_FreeRTOS_Real_Time_Kernel-A_Hands-On_Tutorial_Guide.pdf)**<br/>
+<br>**Sketch: [heap_allocation_rtos](/heap_allocation_rtos/heap_allocation_rtos.ino)**<br/>
