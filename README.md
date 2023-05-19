@@ -14,7 +14,7 @@ This project is a simple website hosted on the ESP32 Microcontroller. The websit
 <br>**Sketch: [sample_website.ino](/sample_website/sample_website.ino)**
 
 ### 2. Website with Login
-_Similar to project 1, a simple website is hosted on the ESP32 Async Webserver. In addition, a login page is requested and the ESP32 operates in STA (Station Point Mode). ESP32 and Device needs to be on the same network. Networks Credetials need to be hardcoded in the Firmware.
+Similar to project 1, a simple website is hosted on the ESP32 Async Webserver. In addition, a login page is requested and the ESP32 operates in STA (Station Point Mode). ESP32 and Device needs to be on the same network. Networks Credetials need to be hardcoded in the Firmware.
 <br>**Sketch: [website_w_login.ino](/website_w_login/website_w_login.ino)**
   
 
