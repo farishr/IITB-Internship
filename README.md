@@ -11,15 +11,16 @@ All the libraries and tools used to develop the projects within this repository 
 
 ### 1. Hosting a website
 This project is a simple website hosted on the ESP32 Microcontroller. The website is hosted on an Async Webserver and the ESP32 is configured in Access Point mode. The HTML files for the website are stored on the SPIFFS memory of the ESP32. These files can be found in the "data" folder within the sketch folder.
-<br>**Sketch: `sample_website`**<br/>
+<br>**Sketch: [sample_website.ino](/sample_website/sample_website.ino)**
 
 ### 2. Website with Login
 _Similar to project 1, a simple website is hosted on the ESP32 Async Webserver. In addition, a login page is requested and the ESP32 operates in STA (Station Point Mode). ESP32 and Device needs to be on the same network. Networks Credetials need to be hardcoded in the Firmware.
-<br>**Sketch: `website_w_login`**<br/>
+<br>**Sketch: [website_w_login.ino](/website_w_login/website_w_login.ino)**
+  
 
 ### 3. MPU9250 Data Acquistion & SD Card Storage using Free-RTOS
 In this project, MPU9250 data is collected and stored into the SD Card simulataneously using the multi-core functionality of the ESP32 Microcontroller.
-<br>**Sketch: `mpu_sd_rtos`**<br/>
+<br>**Sketch: [mpu_sd_rtos.ino](/mpu_sd_rtos/mpu_sd_rtos.ino)**
 
 #### Components Used:
 1. MPU9250 (9-Axis (Gyro + Accelerometer + Magnetometer) MEMS MotionTracking Device)
@@ -29,8 +30,8 @@ In this project, MPU9250 data is collected and stored into the SD Card simulatan
 ![MPU and SD Card Wiring](/MISC/mpu_sd_wiring.png)
 
 Both MPU and SD Card uses SPI communication and is connected to the ESP32 via HSPI & VSPI respectively. Core 0 retrieves data from the MPU into an array and Core 1 writes this data into the SD Card. The global array is split into _n_ sections. While MPU data is stored into the _n<sup>th<sup/>_ section of the array, data in the _(n-1)<sup>th<sup/>_ section is written into the SD Card. Here, the maximum data accquisition speed is determined by the slowed device which is the SD Card Module. In addition, as the file size increases, opening and closing of the file takes longer time as a result, the read and write speed gradually decreases. This can be tackled by creating a new file after a specific number of samples have been recorded.
-
 **Observations:** Maximum data acquisiton speed: 2KHz (1 sample = 1 row = 6 data points)
+  
   
 ### 4. Heap Allocation using Free-RTOS (Dynamic Memory)
 This sketch implements a simple heap allocation application. There are two different functions running simultaneously on both the cores of ESP32. Core 0 runs a function which continually monitors the Serial monitor for input from the user and Core 1 runs the function that prints the user's text. Once the user submits the input into the serial monitor, heap is allocated for this input string and is read by the second function and printed on the serial monitor. 
