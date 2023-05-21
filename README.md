@@ -37,3 +37,6 @@ Both MPU and SD Card uses SPI communication and is connected to the ESP32 via HS
 This sketch implements a simple heap allocation application. There are two different functions running simultaneously on both the cores of ESP32. Core 0 runs a function which continually monitors the Serial monitor for input from the user and Core 1 runs the function that prints the user's text. Once the user submits the input into the serial monitor, heap is allocated for this input string and is read by the second function and printed on the serial monitor. 
 <br>**Refer: [Free-RTOS Guide](https://www.freertos.org/fr-content-src/uploads/2018/07/161204_Mastering_the_FreeRTOS_Real_Time_Kernel-A_Hands-On_Tutorial_Guide.pdf)**
 <br>**Sketch: [heap_allocation_rtos.ino](/heap_allocation_rtos/heap_allocation_rtos.ino)**
+  
+### 5. SD Card Read and Write Benchmarking
+The sketches in this project determine the maximum read and write speed of the micro-SD Card module using SPI protocol.
