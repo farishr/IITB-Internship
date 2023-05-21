@@ -40,3 +40,5 @@ This sketch implements a simple heap allocation application. There are two diffe
   
 ### 5. SD Card Read and Write Benchmarking
 The sketches in this project determine the maximum read and write speed of the micro-SD Card module using SPI protocol. The results of benchmarking can be found in this sheet - **SD Card Benchmarking Results.ods**
+![SD Card Benchmarking Results](/MISC/SD_BENCH_RESULTS.png)
+
