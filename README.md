@@ -39,4 +39,4 @@ This sketch implements a simple heap allocation application. There are two diffe
 <br>**Sketch: [heap_allocation_rtos.ino](/heap_allocation_rtos/heap_allocation_rtos.ino)**
   
 ### 5. SD Card Read and Write Benchmarking
-The sketches in this project determine the maximum read and write speed of the micro-SD Card module using SPI protocol.
+The sketches in this project determine the maximum read and write speed of the micro-SD Card module using SPI protocol. The results of benchmarking can be found in this sheet - [SD Card Benchmarking Results](/SD Card Benchmarking/SD Card Benchmarking Results.ods)
