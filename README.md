@@ -46,5 +46,5 @@ The sketches in this project determine the maximum read and write speed of the m
 
 ### 6. SD Card Data Read and Send over HTTP to PHP Server
 This sketch reads a file from a micro-SD card and sends the file to a php server via HTTP as POST requests. SD Card is connected to the ESP32 through the VSPI interface. A remote php server is hosted and the ESP32 is configured in client mode. The ESP can either connect directly to the server or be on the same network as the server. The POST requests sent from the ESP32 are collected and appended into a file. This is done by writing a custom php script at the server side.
-**Sketch:![sddatafile_to_php_packets.ino](sddatafile_to_php_packets/sddatafile_to_php_packets.ino)**
-PHP Script: ![espdata_sdcard.php](php_scripts/espdata_sdcard.php)
+<br>**Sketch:![sddatafile_to_php_packets.ino](sddatafile_to_php_packets/sddatafile_to_php_packets.ino)**
+<br>**PHP Script: ![espdata_sdcard.php](php_scripts/espdata_sdcard.php)**
