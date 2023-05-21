@@ -42,5 +42,5 @@ This sketch implements a simple heap allocation application. There are two diffe
 The sketches in this project determine the maximum read and write speed of the micro-SD Card module using SPI protocol. The results of benchmarking can be found in this sheet - **SD Card Benchmarking Results.ods.** The SD Card module uses the VSPI channel of the ESP32. The ESP32 is compatible with FAT32 file system. exFat32 file systems are not supported or can conflict with ESP32.<br/>
 <br>Further tests can be done by changing the SPI frequency and writing data in bindary. Setting a higher SPI frequency has been done in the previous project - _MPU9250 Data Acquistion & SD Card Storage using Free-RTOS_
 ![SD Card Benchmarking Results](/MISC/SD_BENCH_RESULTS.png)
-<br>**Sketch: [mpu_sd_rtos.ino](/mpu_sd_rtos/mpu_sd_rtos.ino)**
+<br>**Sketch: [SD Card Benchmarking](/SD Card Benchmarking)**
 
