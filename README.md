@@ -39,6 +39,6 @@ This sketch implements a simple heap allocation application. There are two diffe
 <br>**Sketch: [heap_allocation_rtos.ino](/heap_allocation_rtos/heap_allocation_rtos.ino)**
   
 ### 5. SD Card Read and Write Benchmarking
-The sketches in this project determine the maximum read and write speed of the micro-SD Card module using SPI protocol. The results of benchmarking can be found in this sheet - **SD Card Benchmarking Results.ods**
+The sketches in this project determine the maximum read and write speed of the micro-SD Card module using SPI protocol. The results of benchmarking can be found in this sheet - **SD Card Benchmarking Results.ods.** Further tests can be done by changing the SPI frequency and writing data in bindary. Setting a higher SPI frequency has been done in the previous project - _MPU9250 Data Acquistion & SD Card Storage using Free-RTOS_
 ![SD Card Benchmarking Results](/MISC/SD_BENCH_RESULTS.png)
 
