@@ -51,4 +51,4 @@ This sketch reads a file from a micro-SD card and sends the file to a php server
 
 ### 7. HTTP Transfer Rate Test (Data as a String)
 This sketch is used to test the HTTP tranfer speed from ESP32 to a remote PHP Server. The data is sent from ESP32 as a string and received at the server side. The server side PHP script receives this data and stores it in a text file. Here, 7 channel(4 digit each) is sent over continously. I have found that for this type of data, transfer rate is approximately **~2000Hz** where each sample is 1 row of data. 
-<br>_Note: The transfer speed of the HTTP depends on multiple factors such as router bandwidth, exact character count, proximity to the router, network etc. The transfer rate can vary according to specific applications._
+<br>_Note: The transfer speed of HTTP requests depends on multiple factors such as router bandwidth, exact character count, proximity to the router, network etc. The transfer rate can vary according to specific applications._
