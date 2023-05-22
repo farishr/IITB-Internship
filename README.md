@@ -48,3 +48,7 @@ The sketches in this project determine the maximum read and write speed of the m
 This sketch reads a file from a micro-SD card and sends the file to a php server via HTTP as POST requests. SD Card is connected to the ESP32 through the VSPI interface. A remote php server is hosted and the ESP32 is configured in client mode. The ESP can either connect directly to the server or be on the same network as the server. The POST requests sent from the ESP32 are collected and appended into a file. This is done by writing a custom php script at the server side.
 <br>**Sketch: ![sddatafile_to_php_packets.ino](sddatafile_to_php_packets/sddatafile_to_php_packets.ino)**
 <br>**PHP Script: ![espdata_sdcard.php](php_scripts/espdata_sdcard.php)**
+
+### 7. HTTP Transfer Rate Test (Data as a String)
+This sketch is used to test the HTTP tranfer speed from ESP32 to a remote PHP Server. The data is sent from ESP32 as a string and received at the server side. The server side PHP script receives this data and stores it in a text file. Here, 7 channel(4 digit each) is sent over continously. I have found that for this type of data, transfer rate is approximately **~2000Hz** where each sample is 1 row of data. 
+<br>_Note: The transfer speed of the HTTP depends on multiple factors such as router bandwidth, exact character count, proximity to the router, network etc. The transfer rate can vary according to specific applications._
