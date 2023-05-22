@@ -9,8 +9,8 @@
 #include <SPI.h>
 #include <SD.h> 
 
-const char* ssid     = "IITB_IOT";
-const char* password = "iitbiot1234";
+const char* ssid     = "ENTER_SSID";
+const char* password = "ENTER_PASSWORD";
 //bool ack = true;
 int buf_size = 6144;
 
