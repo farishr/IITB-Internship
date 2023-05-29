@@ -58,5 +58,5 @@ This sketch is used to test the HTTP tranfer speed from ESP32 to a remote PHP Se
 ### 8. MPU9250 interfacing with Raspberry Pi 4 using I2C
 This project contains files that interface Raspberry Pi 4's I2C channel with the MPU9250 to read accelerometer and gyroscope sensor values. This sketch is very similar to the esp32 sketch for the same. Benchmarking files are also included in this project.  
 <br> **Sketch: ![i2c_mpu9250.py](MPU9250_RPI/i2c_mpu9250.py)**
-<br> **Benchmarking Results:**
+<br> **Benchmarking Results: ![MPU9250-Python-Bench](MPU9250_RPI/MPU9250-Python-Bench)**
 
