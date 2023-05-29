@@ -60,10 +60,10 @@ This project contains files that interface Raspberry Pi 4's I2C channel with the
 **Wiring:**</br>
 | RPI | MPU9250 |
 |--------|----------|
-| Pin 3 | SDA pin|
-| Pin 5 | SCL pin|
-| Pin 6 | Ground(GND)|
-| Pin 1 | VCC|
+| Pin 3 | SDA |
+| Pin 5 | SCL |
+| Pin 6 | GND |
+| Pin 1 | VCC | 
 
 <br> **Sketch: ![i2c_mpu9250.py](MPU9250_RPI/i2c_mpu9250.py)**
 <br> **Benchmarking Results: ![MPU9250-Python-Bench](MPU9250_RPI/MPU9250-Python-Bench)**
