@@ -4,7 +4,7 @@ MPU Benchmarking in Python:
 
 RESULTS after updating the I2C baudrate to 800000 (this value is the highest we can set for i2c without exp i/o or conection fails) in /boot/config.txt (https://www.raspberrypi-spy.co.uk/2018/02/change-raspberry-pi-i2c-bus-speed/):
 
-GYROSCOPE:
+GYROSCOPE (3 channel (Gx, Gy, Gz), time measured for 1000 rows):
 
 Time(uS)	Frequency(Hz)
 128730		7768.1
