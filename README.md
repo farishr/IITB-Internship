@@ -65,8 +65,7 @@ This project contains files that interface Raspberry Pi 4's I2C channel with the
 | Pin 6 | GND |
 | Pin 1 | VCC | 
 
-_References: I referred niru-5's repository for building this project ![link to repo](https://github.com/niru-5/imusensor.git))_
-
+_References: I referred niru-5's repository for building this project ![link to repo](https://github.com/niru-5/imusensor.git)_
 <br> **Sketch: ![i2c_mpu9250.py](MPU9250_RPI/i2c_mpu9250.py)**
 <br> **Benchmarking Results: ![MPU9250-Python-Bench](MPU9250_RPI/MPU9250-Python-Bench)**
 
