@@ -12,17 +12,31 @@ REGISTER_VALUE_RESET            = 0x80
 REGISTER_ACCEL_CONFIG           = 0x1C
 REGISTER_ACCEL_OUT              = 0x3B
 
+# ACCEL_XOUT_H = 0x3B
+# ACCEL_XOUT_L = 0x3C
+# ACCEL_YOUT_H = 0x3D
+# ACCEL_YOUT_L = 0x3E
+# ACCEL_ZOUT_H = 0x3F
+# ACCEL_ZOUT_L = 0x40
+
+# GYRO_XOUT_H = 0x43
+# GYRO_XOUT_L = 0x44
+# GYRO_YOUT_H = 0x45
+# GYRO_YOUT_L = 0x46
+# GYRO_ZOUT_H = 0x47
+# GYRO_ZOUT_L = 0x48
+ACC_REG = [0x3B, 0x3C, 0x3D, 0x3E, 0x3F, 0x40]
+GYRO_REG = [0x43, 0x44, 0x45, 0x46, 0x47, 0x48]
+
 # VARIABLES
 
-csPin = 5
-useSPI = True
-xRaw, yRaw, zRaw = 0, 0, 0
-rawData = [0,0,0,0,0,0]
+AxRaw, AyRaw, AzRaw, GxRaw, GyRaw, GzRaw = 0, 0, 0, 0, 0, 0
+rawData = []
 
 # SPI SETUP
 spi = spidev.SpiDev()
 spi.open(0 , 0)
-spi.max_speed_hz = 1 * 1000
+# ~ spi.max_speed_hz = 200*1000000
 
 # FUNCTIONS
 
@@ -31,13 +45,7 @@ def writeMPU9250Register(reg, val):
 	# ~ log2 = spi.xfer([val])
 	spi.writebytes([reg])
 	spi.writebytes([val])
-	
 
-def readMPU9250Register3x16(reg, buf):
-	reg |= 0x80;
-	spi.writebytes([reg])
-	for x in range(6):
-		buf[x] = spi.readbytes(1)[0]
 		
 # PROGRAM CODE
 
@@ -47,10 +55,26 @@ time.sleep(0.1)
 writeMPU9250Register(REGISTER_INT_PIN_CFG, REGISTER_VALUE_BYPASS_EN)
 time.sleep(0.1)
 
-while True:
-	readMPU9250Register3x16(REGISTER_ACCEL_OUT, rawData)
-	xRaw = ((rawData[0] << 8) | rawData[1])
-	yRaw = ((rawData[2] << 8) | rawData[3])
-	zRaw = ((rawData[4] << 8) | rawData[5])
-	print (" Ax: {0} ; Ay : {1} ; Az : {2}".format(xRaw, yRaw, zRaw))
-	time.sleep(0.5)
+for x in range(6):
+	GYRO_REG[x] |= 0x80
+	ACC_REG[x] |= 0x80
+
+start = time.time_ns()
+for x in range(1000):
+# ~ while True:
+	rawData = spi.xfer([ACC_REG[0], ACC_REG[1], ACC_REG[2], ACC_REG[3], ACC_REG[4], ACC_REG[5], GYRO_REG[0], GYRO_REG[1], GYRO_REG[2], GYRO_REG[3], GYRO_REG[4], GYRO_REG[5]])
+	
+	AxRaw = int16( (rawData[1] << 8) | rawData[0] ) # type: ignore
+	AyRaw = int16( (rawData[3] << 8) | rawData[2] ) # type: ignore
+	AzRaw = int16( (rawData[5] << 8) | rawData[4] ) # type: ignore
+	
+	GxRaw = int16( (rawData[7] << 8) | rawData[6] ) # type: ignore
+	GyRaw = int16( (rawData[9] << 8) | rawData[8] ) # type: ignore
+	GzRaw = int16( (rawData[11] << 8) | rawData[10] ) # type: ignore
+	# ~ print(xRaw)
+	# ~ print("Gx: {0} ; Gy : {1} ; Gz : {2}".format(xRaw, yRaw, zRaw))
+
+end = time.time_ns()
+print("Time Taken: ",(end - start)/1000,"us")
+
+spi.close()
