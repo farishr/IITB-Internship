@@ -32,6 +32,8 @@ The 125 MHz default value is not sustainable on a Raspberry Pi and it must be ch
 
 Note: Use Geany Editor for benchmarking as IDE can have small effect on the benchmarking. A difference of 4000uS was observed while running the same code in VS Code and Geany, Geany being the faster one.
 
+SPI Speed set at Default Value which is 125Mhz for these measurements. Anything beyond this does not make a significant change in the speeds.
+
 GYROSCOPE (3 channel (Gx, Gy, Gz), time measured for 1000 rows):
 
 Time(uS)	Frequency(Hz)
