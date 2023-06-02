@@ -77,6 +77,7 @@ Similar to the previous sketch, MPU9250 is interfaced to the Raspberry Pi using 
 | Pin 19 | SDA |
 | Pin 23 | SCL |
 | Pin 21 | AD0 |
+| Pin 24 | NCS |
 | Pin 6 | GND |
 | Pin 6 | FSYNC |
 | Pin 1 | VCC |
