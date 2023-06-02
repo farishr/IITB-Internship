@@ -71,4 +71,13 @@ _References: I referred niru-5's repository for building this project ![link to 
   
 ### 9. MPU9250 interfacing with Raspberry Pi 4 using SPI
 Similar to the previous sketch, MPU9250 is interfaced to the Raspberry Pi using instead SPI protocol. SPI offers much higher transfer speeds as compared to I2C at the expense of higher number of cables and short cable lengths.
+**Wiring:**</br>
+| RPI | MPU9250 |
+|--------|----------|
+| Pin 19 | SDA |
+| Pin 23 | SCL |
+| Pin 21 | AD0 |
+| Pin 6 | GND |
+| Pin 6 | FSYNC |
+| Pin 1 | VCC | 
 
