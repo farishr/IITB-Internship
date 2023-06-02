@@ -79,5 +79,8 @@ Similar to the previous sketch, MPU9250 is interfaced to the Raspberry Pi using 
 | Pin 21 | AD0 |
 | Pin 6 | GND |
 | Pin 6 | FSYNC |
-| Pin 1 | VCC | 
+| Pin 1 | VCC |
+
+**Sketch: ![spi_mpu9250.py](MPU9250_RPI/spi_mpu9250.py)**
+<br> **Benchmarking Results: ![MPU9250-Python-Bench](MPU9250_RPI/MPU9250-Python-Bench)**
 
