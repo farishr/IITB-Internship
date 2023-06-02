@@ -70,7 +70,7 @@ _References: I referred niru-5's repository for building this project ![link to 
 <br> **Benchmarking Results: ![MPU9250-Python-Bench](MPU9250_RPI/MPU9250-Python-Bench)**
   
 ### 9. MPU9250 interfacing with Raspberry Pi 4 using SPI
-Similar to the previous sketch, MPU9250 is interfaced to the Raspberry Pi using instead SPI protocol. SPI offers much higher transfer speeds as compared to I2C at the expense of higher number of cables and short cable lengths.
+Similar to the previous sketch, MPU9250 is interfaced to the Raspberry Pi using instead SPI protocol. SPI offers much higher transfer speeds as compared to I2C at the expense of higher number of cables and short cable lengths.</br>
 **Wiring:**</br>
 | RPI | MPU9250 |
 |--------|----------|
