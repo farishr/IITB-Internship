@@ -2,6 +2,13 @@ MPU Benchmarking in Python:
 
 ********I2C Interface********
 
+Use library: smbus
+Documentation: https://smbus2.readthedocs.io/en/latest/
+
+Interesting Links:
+https://medium.com/@niru5/hands-on-with-rpi-and-mpu9250-part-3-232378fa6dbc
+
+
 RESULTS after updating the I2C baudrate to 800000 (this value is the highest we can set for i2c without exp i/o or conection fails) in /boot/config.txt (https://www.raspberrypi-spy.co.uk/2018/02/change-raspberry-pi-i2c-bus-speed/):
 
 GYROSCOPE (3 channel (Gx, Gy, Gz), time measured for 1000 rows):
@@ -14,8 +21,31 @@ Time(uS)	Frequency(Hz)
 128202		7800.2
 
 
+********SPI Interface********
 
+Use library: spidev
+Documentation: https://www.sigmdel.ca/michel/ha/rpi/dnld/draft_spidev_doc.pdf
 
+The 125 MHz default value is not sustainable on a Raspberry Pi and it must be changed to a reasonable value. The maximum speed appears to be about 32 MHz on the Raspberry Pi. This can be set using the 'max_speed_hz' method. There is a debate about permissible speed values, with some insisting that the speed must be a power of 2, while others argue that it can be a multiple of 2. Tests at least partially confirm that the latter is correct. It was possible to set the speed at 3800 Hz, which appears to be a lower limit, and at 4800 Hz. Neither of these values is a power of 2.
 
+*************SPI-INTERFACE***************
 
+Note: Use Geany Editor for benchmarking as IDE can have small effect on the benchmarking. A difference of 4000uS was observed while running the same code in VS Code and Geany, Geany being the faster one.
 
+GYROSCOPE (3 channel (Gx, Gy, Gz), time measured for 1000 rows):
+
+Time(uS)	Frequency(Hz)
+21105		47382
+21053		47499
+20396		49029
+20989		47644
+20397		49029
+
+ACCELEROMETER & GYROSCOPE (6 channel (Ax, Ay, Az, Gx, Gy, Gz), time measured for 1000 rows):
+
+Time(uS)	Frequency(Hz)
+39413		25372
+38990		25647
+38063		26272
+38176		26194
+39235		25487
