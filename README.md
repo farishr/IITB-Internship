@@ -68,4 +68,7 @@ This project contains files that interface Raspberry Pi 4's I2C channel with the
 _References: I referred niru-5's repository for building this project ![link to repo](https://github.com/niru-5/imusensor.git)_
 <br> **Sketch: ![i2c_mpu9250.py](MPU9250_RPI/i2c_mpu9250.py)**
 <br> **Benchmarking Results: ![MPU9250-Python-Bench](MPU9250_RPI/MPU9250-Python-Bench)**
+  
+### 9. MPU9250 interfacing with Raspberry Pi 4 using SPI
+Similar to the previous sketch, MPU9250 is interfaced to the Raspberry Pi using instead SPI protocol. SPI offers much higher transfer speeds as compared to I2C at the expense of higher number of cables and short cable lengths.
 
