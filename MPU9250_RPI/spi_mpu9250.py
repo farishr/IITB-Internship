@@ -31,7 +31,8 @@ GYRO_REG = [0x43, 0x44, 0x45, 0x46, 0x47, 0x48]
 # VARIABLES
 
 AxRaw, AyRaw, AzRaw, GxRaw, GyRaw, GzRaw = 0, 0, 0, 0, 0, 0
-rawData = []
+AccRawData = []
+GyrRawData = []
 
 # SPI SETUP
 spi = spidev.SpiDev()
@@ -62,15 +63,17 @@ for x in range(6):
 start = time.time_ns()
 for x in range(1000):
 # ~ while True:
-	rawData = spi.xfer([ACC_REG[0], ACC_REG[1], ACC_REG[2], ACC_REG[3], ACC_REG[4], ACC_REG[5], GYRO_REG[0], GYRO_REG[1], GYRO_REG[2], GYRO_REG[3], GYRO_REG[4], GYRO_REG[5]])
+	# ~ rawData = spi.xfer([ACC_REG[0], ACC_REG[1], ACC_REG[2], ACC_REG[3], ACC_REG[4], ACC_REG[5], GYRO_REG[0], GYRO_REG[1], GYRO_REG[2], GYRO_REG[3], GYRO_REG[4], GYRO_REG[5]])
+	GyrRawData = spi.xfer([GYRO_REG[0], GYRO_REG[1], GYRO_REG[2], GYRO_REG[3], GYRO_REG[4], GYRO_REG[5]])
+	AccRawData = spi.xfer([ACC_REG[0], ACC_REG[1], ACC_REG[2], ACC_REG[3], ACC_REG[4], ACC_REG[5]])
 	
-	AxRaw = int16( (rawData[1] << 8) | rawData[0] ) # type: ignore
-	AyRaw = int16( (rawData[3] << 8) | rawData[2] ) # type: ignore
-	AzRaw = int16( (rawData[5] << 8) | rawData[4] ) # type: ignore
+	AxRaw = int16( (AccRawData[1] << 8) | AccRawData[0] ) # type: ignore
+	AyRaw = int16( (AccRawData[3] << 8) | AccRawData[2] ) # type: ignore
+	AzRaw = int16( (AccRawData[5] << 8) | AccRawData[4] ) # type: ignore
 	
-	GxRaw = int16( (rawData[7] << 8) | rawData[6] ) # type: ignore
-	GyRaw = int16( (rawData[9] << 8) | rawData[8] ) # type: ignore
-	GzRaw = int16( (rawData[11] << 8) | rawData[10] ) # type: ignore
+	GxRaw = int16( (GyrRawData[1] << 8) | GyrRawData[0] ) # type: ignore
+	GyRaw = int16( (GyrRawData[3] << 8) | GyrRawData[2] ) # type: ignore
+	GzRaw = int16( (GyrRawData[5] << 8) | GyrRawData[4] ) # type: ignore
 	# ~ print(xRaw)
 	# ~ print("Gx: {0} ; Gy : {1} ; Gz : {2}".format(xRaw, yRaw, zRaw))
 
