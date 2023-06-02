@@ -1,5 +1,6 @@
 import spidev
 import time
+import csv
 from numpy import int16
 
 # REGISTERS
@@ -30,9 +31,15 @@ GYRO_REG = [0x43, 0x44, 0x45, 0x46, 0x47, 0x48]
 
 # VARIABLES
 
-AxRaw, AyRaw, AzRaw, GxRaw, GyRaw, GzRaw = 0, 0, 0, 0, 0, 0
+AxRaw, AyRaw, AzRaw, GxRaw, GyRaw, GzRaw = [],[],[],[],[],[]
 AccRawData = []
 GyrRawData = []
+samples = 5000		# Number of samples to be collected
+i = 0
+
+lastMicros = 0
+MAX_SAMPLING_FREQ = 20000		# Sampling Frequecy
+MINIMUM_SAMPLING_DELAY_uSec = 1000*1000*1000/MAX_SAMPLING_FREQ
 
 # SPI SETUP
 spi = spidev.SpiDev()
@@ -50,7 +57,7 @@ def writeMPU9250Register(reg, val):
 		
 # PROGRAM CODE
 
-writeMPU9250Register(REGISTER_PWR_MGMT_1, REGISTER_VALUE_RESET)	# RESET MPU
+writeMPU9250Register(REGISTER_PWR_MGMT_1, REGISTER_VALUE_RESET) # RESET MPU
 time.sleep(0.1)
 
 writeMPU9250Register(REGISTER_INT_PIN_CFG, REGISTER_VALUE_BYPASS_EN) # Bypass Enable FOR DIRECT ACCESS TO auxiliary I2C BUS
@@ -61,23 +68,39 @@ for x in range(6):
 	ACC_REG[x] |= 0x80
 
 start = time.time_ns()
-for x in range(1000):
+while i < samples:
 # ~ while True:
-	# ~ rawData = spi.xfer([ACC_REG[0], ACC_REG[1], ACC_REG[2], ACC_REG[3], ACC_REG[4], ACC_REG[5], GYRO_REG[0], GYRO_REG[1], GYRO_REG[2], GYRO_REG[3], GYRO_REG[4], GYRO_REG[5]])
-	GyrRawData = spi.xfer([GYRO_REG[0], GYRO_REG[1], GYRO_REG[2], GYRO_REG[3], GYRO_REG[4], GYRO_REG[5]])
-	AccRawData = spi.xfer([ACC_REG[0], ACC_REG[1], ACC_REG[2], ACC_REG[3], ACC_REG[4], ACC_REG[5]])
-	
-	AxRaw = int16( (AccRawData[1] << 8) | AccRawData[0] ) # type: ignore
-	AyRaw = int16( (AccRawData[3] << 8) | AccRawData[2] ) # type: ignore
-	AzRaw = int16( (AccRawData[5] << 8) | AccRawData[4] ) # type: ignore
-	
-	GxRaw = int16( (GyrRawData[1] << 8) | GyrRawData[0] ) # type: ignore
-	GyRaw = int16( (GyrRawData[3] << 8) | GyrRawData[2] ) # type: ignore
-	GzRaw = int16( (GyrRawData[5] << 8) | GyrRawData[4] ) # type: ignore
-	# ~ print(xRaw)
-	# ~ print("Gx: {0} ; Gy : {1} ; Gz : {2}".format(xRaw, yRaw, zRaw))
+	if time.time_ns() >= (lastMicros + MINIMUM_SAMPLING_DELAY_uSec):
+		lastMicros = time.time_ns()
+		# ~ rawData = spi.xfer([ACC_REG[0], ACC_REG[1], ACC_REG[2], ACC_REG[3], ACC_REG[4], ACC_REG[5], GYRO_REG[0], GYRO_REG[1], GYRO_REG[2], GYRO_REG[3], GYRO_REG[4], GYRO_REG[5]])
+		# ~ AccRawData = spi.xfer([ACC_REG[0], ACC_REG[1], ACC_REG[2], ACC_REG[3], ACC_REG[4], ACC_REG[5]])
+		GyrRawData = spi.xfer([GYRO_REG[0], GYRO_REG[1], GYRO_REG[2], GYRO_REG[3], GYRO_REG[4], GYRO_REG[5]])
+		
+		# ~ AxRaw = int16( (AccRawData[1] << 8) | AccRawData[0] ) # type: ignore
+		# ~ AyRaw = int16( (AccRawData[3] << 8) | AccRawData[2] ) # type: ignore
+		# ~ AzRaw = int16( (AccRawData[5] << 8) | AccRawData[4] ) # type: ignore
+		
+		GxRaw.append(int16( (GyrRawData[1] << 8) | GyrRawData[0] )) # type: ignore
+		GyRaw.append(int16( (GyrRawData[3] << 8) | GyrRawData[2] )) # type: ignore
+		GzRaw.append(int16( (GyrRawData[5] << 8) | GyrRawData[4] )) # type: ignore
+		i += 1
+		# ~ print("Gx: {0} ; Gy : {1} ; Gz : {2}".format(xRaw, yRaw, zRaw))
 
 end = time.time_ns()
+spi.close()
 print("Time Taken: ",(end - start)/1000,"us")
 
-spi.close()
+# Saving the Data
+
+gyrofile = list(zip(GxRaw, GyRaw, GzRaw))
+fields = ['Gx', 'Gy', 'Gz']
+
+with open('Gyro_Data.csv', 'w') as f:
+    # Create a CSV writer object that will write to the file 'f'
+    csv_writer = csv.writer(f)
+    
+    # Write the field names (column headers) to the first row of the CSV file
+    csv_writer.writerow(fields)
+    
+    # Write all of the rows of data to the CSV file
+    csv_writer.writerows(gyrofile)
