@@ -49,11 +49,7 @@ spi.open(0 , 0)
 # FUNCTIONS
 
 def writeMPU9250Register(reg, val):
-	# ~ log1 = spi.xfer([reg])
-	# ~ log2 = spi.xfer([val])
-	spi.writebytes([reg])
-	spi.writebytes([val])
-
+	spi.xfer([reg,val])
 		
 # PROGRAM CODE
 
